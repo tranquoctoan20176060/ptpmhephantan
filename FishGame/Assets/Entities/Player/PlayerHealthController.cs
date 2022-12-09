@@ -22,9 +22,9 @@ using UnityEngine;
 public class PlayerHealthController : MonoBehaviour
 {
     public PlayerDiedEvent PlayerDied;
-    public int MaxHealth = 1;
+    public int MaxHealth = 2;
     
-    private int health = 1;
+    private int health = 2;
     private PlayerMovementController playerMovementController;
     private PlayerInputController playerInputController;
 

@@ -52,8 +52,8 @@ public class PlayerMovementController : MonoBehaviour
     public float KnockbackTime = 0.25f;
 
     private Rigidbody2D r;
-    private Animator bodyAnimator;
-    private Animator finAnimator;
+    public Animator bodyAnimator;
+    public Animator finAnimator;
     private float horizontalMovement;
     private int direction = 1;
     private bool jump;

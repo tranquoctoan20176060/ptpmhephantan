@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -24,7 +25,7 @@ public class PlayerHealthController : MonoBehaviour
     public PlayerDiedEvent PlayerDied;
     public int MaxHealth = 2;
     
-    private int health = 2;
+    public int health = 2;
     private PlayerMovementController playerMovementController;
     private PlayerInputController playerInputController;
 
@@ -62,13 +63,34 @@ public class PlayerHealthController : MonoBehaviour
         // If health falls to 0 or below, disable player input controls, play the death animation and fire the PlayerDied event.
         if (health <= 0)
         {
+            //playerMovementController.bodyAnimator.SetTrigger("Fall");
+            //playerMovementController.finAnimator.SetTrigger("Fall");
+
+            //StartCoroutine(PlayerDie());
+            
             playerInputController.enabled = false;
+
             playerMovementController.SetHorizontalMovement(0);
             playerMovementController.SetJump(false);
             playerMovementController.SetJumpHeld(false);
             playerMovementController.PlayDeathAnimation();
+
             PlayerDied.Invoke(gameObject);
         }
+    }
+
+    IEnumerator PlayerDie()
+    {
+        yield return new WaitForSeconds(3.0f);
+
+        playerInputController.enabled = false;
+
+        playerMovementController.SetHorizontalMovement(0);
+        playerMovementController.SetJump(false);
+        playerMovementController.SetJumpHeld(false);
+        playerMovementController.PlayDeathAnimation();
+
+        PlayerDied.Invoke(gameObject);
     }
     
     /// <summary>

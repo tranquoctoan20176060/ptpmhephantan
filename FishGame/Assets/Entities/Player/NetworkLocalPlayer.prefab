@@ -81,7 +81,8 @@ MonoBehaviour:
   PlayerDied:
     m_PersistentCalls:
       m_Calls: []
-  MaxHealth: 2
+  MaxHealth: 5
+  health: 5
 --- !u!114 &599014717617889594
 MonoBehaviour:
   m_ObjectHideFlags: 0

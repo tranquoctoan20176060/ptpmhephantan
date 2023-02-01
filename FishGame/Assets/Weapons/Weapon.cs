@@ -25,6 +25,13 @@ public abstract class Weapon : MonoBehaviour
 
     private float attackTimer;
 
+    PlayerHealthController playerHealthController;
+
+    private void Start()
+    {
+        playerHealthController= GetComponent<PlayerHealthController>();
+    }
+
     /// <summary>
     /// Called by Unity every frame.
     /// </summary>
@@ -32,7 +39,6 @@ public abstract class Weapon : MonoBehaviour
     {
         attackTimer -= Time.deltaTime;
     }
-
     /// <summary>
     /// Attack with this weapon.
     /// </summary>
@@ -42,6 +48,8 @@ public abstract class Weapon : MonoBehaviour
         if (attackTimer <= 0)
         {
             HandleAttack();
+            
+
             attackTimer = AttackInterval;
         }
     }

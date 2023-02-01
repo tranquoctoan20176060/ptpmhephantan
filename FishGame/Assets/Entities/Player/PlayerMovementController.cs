@@ -54,6 +54,8 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody2D r;
     public Animator bodyAnimator;
     public Animator finAnimator;
+    public PlayerHealthController healController;
+
     private float horizontalMovement;
     private int direction = 1;
     private bool jump;
@@ -74,6 +76,11 @@ public class PlayerMovementController : MonoBehaviour
         footstepEmission = FootstepParticles.emission;
         bodyAnimator = BodySprite.GetComponent<Animator>();
         finAnimator = FinSprite.GetComponent<Animator>();
+
+        if(healController == null)
+        {
+            healController = gameObject.GetComponentInParent<PlayerHealthController>();
+        }
     }
 
     /// <summary>
@@ -125,34 +132,61 @@ public class PlayerMovementController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         // If the object we collided with is not a projectile then return early.
-        if (collider.tag != "Projectile")
+        if (collider.tag == "Projectile")
         {
-            return;
-        }
-        
-        // Get the Cannonball component from the object we collided with.
-        var cannonball = collider.gameObject.GetComponent<Cannonball>();
+           
 
-        // If the owner of this cannonball is this player, return early. (We don't want to damage ourself!)
-        if (cannonball.Owner == gameObject)
+            // Get the Cannonball component from the object we collided with.
+            var cannonball = collider.gameObject.GetComponent<Cannonball>();
+
+            // If the owner of this cannonball is this player, return early. (We don't want to damage ourself!)
+            if (cannonball.Owner == gameObject)
+            {
+                return;
+            }
+
+            // Add a knockback force to this player based on the direction the projectile was travelling.
+            r.velocity = new Vector2(0, r.velocity.y);
+            r.AddForce(new Vector2(cannonball.GetDirection() * KnockbackForce, 0), ForceMode2D.Impulse);
+            knockbackTimer = Time.time + KnockbackTime;
+
+            // Play the blood particle effect.
+            BloodParticles.Play();
+
+            // Trigger the hit animation.
+            bodyAnimator.SetTrigger("Hit");
+            finAnimator.SetTrigger("Hit");
+
+            // Fire the CollidedWithProjectile event.
+            CollidedWithProjectile.Invoke();
+        }
+        if (collider.tag == "HealthPotion")
         {
-            return;
+
+            if (healController.health < 5)
+            {
+                healController.health += 1;
+
+                Destroy(collider.gameObject);
+            }
+            if (healController.health >= 5)
+            {
+                Destroy(collider.gameObject);
+            }
         }
-
-        // Add a knockback force to this player based on the direction the projectile was travelling.
-        r.velocity = new Vector2(0, r.velocity.y);
-        r.AddForce(new Vector2(cannonball.GetDirection() * KnockbackForce, 0), ForceMode2D.Impulse);
-        knockbackTimer = Time.time + KnockbackTime;
-
-        // Play the blood particle effect.
-        BloodParticles.Play();
-
-        // Trigger the hit animation.
-        bodyAnimator.SetTrigger("Hit");
-        finAnimator.SetTrigger("Hit");
-        
-        // Fire the CollidedWithProjectile event.
-        CollidedWithProjectile.Invoke();
+        if (collider.tag == "DamePotion")
+        {
+            if (healController.damage <= 2)
+            {
+                healController.damage += 1;
+                MovementSpeed += 100;
+                Destroy(collider.gameObject);
+            }
+            if (healController.damage > 2)
+            {
+                Destroy(collider.gameObject);
+            }
+        }
     }
 
     /// <summary>

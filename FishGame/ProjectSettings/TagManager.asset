@@ -9,6 +9,8 @@ TagManager:
   - RemotePlayer
   - OfflinePlayer
   - GameManager
+  - HealthPotion
+  - DamePotion
   layers:
   - Default
   - TransparentFX

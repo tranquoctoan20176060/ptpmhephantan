@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine;
 
 /// <summary>
@@ -26,6 +27,9 @@ public class PlayerHealthController : MonoBehaviour
     public int MaxHealth = 2;
     
     public int health = 2;
+    public int damage = 1;
+    public Text health_text;
+    public Text damage_text;
     private PlayerMovementController playerMovementController;
     private PlayerInputController playerInputController;
 
@@ -50,16 +54,20 @@ public class PlayerHealthController : MonoBehaviour
         // Begin listening for the CollidedWithProjectile event on the PlayerMovementController.
         playerMovementController.CollidedWithProjectile.AddListener(OnCollidedWithProjectile);
     }
+    private void Update()
+    {
+       // takeText();
+    }
 
     /// <summary>
     /// Reduces the players health by damage, triggers the PlayerDied event if health is 0 or below.
     /// </summary>
     /// <param name="damage">The amount of damage the player should receive.</param>
-    public void TakeDamage(int damage = 1)
+    public int TakeDamage()
     {
         // Reduce the players health by damage.
-        health -= damage;
-
+        health -= 1;
+       
         // If health falls to 0 or below, disable player input controls, play the death animation and fire the PlayerDied event.
         if (health <= 0)
         {
@@ -67,7 +75,7 @@ public class PlayerHealthController : MonoBehaviour
             //playerMovementController.finAnimator.SetTrigger("Fall");
 
             //StartCoroutine(PlayerDie());
-            
+            damage = 1;
             playerInputController.enabled = false;
 
             playerMovementController.SetHorizontalMovement(0);
@@ -76,7 +84,9 @@ public class PlayerHealthController : MonoBehaviour
             playerMovementController.PlayDeathAnimation();
 
             PlayerDied.Invoke(gameObject);
+          
         }
+        return health;
     }
 
     IEnumerator PlayerDie()
@@ -91,6 +101,7 @@ public class PlayerHealthController : MonoBehaviour
         playerMovementController.PlayDeathAnimation();
 
         PlayerDied.Invoke(gameObject);
+        damage= 1;    
     }
     
     /// <summary>
@@ -100,4 +111,12 @@ public class PlayerHealthController : MonoBehaviour
     {
         TakeDamage();
     }
+  /* public void takeText()
+    {
+        float takeDame = damage;
+        damage_text.text = takeDame.ToString();
+
+        float takeHealth = health;
+        health_text.text = takeHealth.ToString();
+    } */
 }

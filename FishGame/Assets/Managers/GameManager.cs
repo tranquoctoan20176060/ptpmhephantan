@@ -36,15 +36,20 @@ public class GameManager : MonoBehaviour
     public Text WinningPlayerText;
     public GameObject SpawnPoints;
     public AudioManager AudioManager;
+    //public PlayerMovementController playerMovementController;
+    public bool isLocal;
+    public GameObject localPlayer;
 
+    
     private IDictionary<string, GameObject> players;
     private IUserPresence localUser;
-    private GameObject localPlayer;
+    
     private IMatch currentMatch;
 
-    private Transform[] spawnPoints;
 
     private string localDisplayName;
+
+    public bool isStart = false;
 
     /// <summary>
     /// Called by Unity when the GameObject starts.
@@ -123,10 +128,12 @@ public class GameManager : MonoBehaviour
         foreach (var user in match.Presences)
         {
             SpawnPlayer(match.Id, user);
+            
         }
 
         // Cache a reference to the current match.
         currentMatch = match;
+        isStart = true;
     }
 
     /// <summary>
@@ -185,6 +192,7 @@ public class GameManager : MonoBehaviour
             case OpCodes.NewRound:
                 // Display the winning player's name and begin a new round.
                 await AnnounceWinnerAndRespawn(state["winningPlayerName"]);
+                isStart = false;
                 break;
             default:
                 break;
@@ -199,6 +207,8 @@ public class GameManager : MonoBehaviour
     /// <param name="spawnIndex">The spawn location index they should be spawned at.</param>
     private void SpawnPlayer(string matchId, IUserPresence user, int spawnIndex = -1)
     {
+        //PlayerHealthController.damage = 1;
+        NetworkLocalPlayerPrefab.GetComponentInChildren<PlayerMovementController>().MovementSpeed = 100;
         // If the player has already been spawned, return early.
         if (players.ContainsKey(user.SessionId))
         {
@@ -211,14 +221,14 @@ public class GameManager : MonoBehaviour
             SpawnPoints.transform.GetChild(spawnIndex);
 
         // Set a variable to check if the player is the local player or not based on session ID.
-        var isLocal = user.SessionId == localUser.SessionId;
+        isLocal = user.SessionId == localUser.SessionId;
 
         // Choose the appropriate player prefab based on if it's the local player or not.
         var playerPrefab = isLocal ? NetworkLocalPlayerPrefab : NetworkRemotePlayerPrefab;
 
         // Spawn the new player.
         var player = Instantiate(playerPrefab, spawnPoint.transform.position, Quaternion.identity);
-
+       
         // Setup the appropriate network data values if this is a remote player.
         if (!isLocal)
         {
@@ -227,6 +237,7 @@ public class GameManager : MonoBehaviour
                 MatchId = matchId,
                 User = user
             };
+       
         }
 
         // Add the player to the players array.
@@ -237,10 +248,13 @@ public class GameManager : MonoBehaviour
         {
             localPlayer = player;
             player.GetComponent<PlayerHealthController>().PlayerDied.AddListener(OnLocalPlayerDied);
+       
         }
 
         // Give the player a color based on their index in the players array.
-        player.GetComponentInChildren<PlayerColorController>().SetColor(System.Array.IndexOf(players.Keys.ToArray(), user.SessionId));
+      
+       player.GetComponentInChildren<PlayerColorController>().SetColor(System.Array.IndexOf(players.Keys.ToArray(), user.SessionId));
+      
     }
 
     /// <summary>
@@ -254,6 +268,7 @@ public class GameManager : MonoBehaviour
 
         // Remove ourself from the players array and destroy our GameObject after 0.5 seconds.
         players.Remove(localUser.SessionId);
+        
         Destroy(player, 0.5f);
     }
 

@@ -162,30 +162,28 @@ public class PlayerMovementController : MonoBehaviour
         }
         if (collider.tag == "HealthPotion")
         {
-
-            if (healController.health < 5)
+            if(healController != null)
             {
-                healController.health += 1;
-
-                Destroy(collider.gameObject);
+                if (healController.health < 5)
+                {
+                    healController.health += 1;
+                }
             }
-            if (healController.health >= 5)
-            {
-                Destroy(collider.gameObject);
-            }
+            Destroy(collider.gameObject);
+            SpawnPotion.instance.RandomSpawn(GetComponentInParent<Transform>().position);
         }
         if (collider.tag == "DamePotion")
         {
-            if (healController.damage <= 2)
+            if (healController != null)
             {
-                healController.damage += 1;
-                MovementSpeed += 100;
-                Destroy(collider.gameObject);
+                if (healController.damage <= 2)
+                {
+                    healController.damage += 1;
+                    MovementSpeed += 100;
+                }
             }
-            if (healController.damage > 2)
-            {
-                Destroy(collider.gameObject);
-            }
+            Destroy(collider.gameObject);
+            SpawnPotion.instance.RandomSpawn(GetComponentInParent<Transform>().position);
         }
     }
 

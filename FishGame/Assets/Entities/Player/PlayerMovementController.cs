@@ -67,6 +67,8 @@ public class PlayerMovementController : MonoBehaviour
     private bool falling;
     private ParticleSystem.EmissionModule footstepEmission;
 
+    public AudioSource collectAudio;
+
     /// <summary>
     /// Called by Unity when this GameObject starts.
     /// </summary>
@@ -170,6 +172,11 @@ public class PlayerMovementController : MonoBehaviour
                 }
             }
             Destroy(collider.gameObject);
+            if(collectAudio != null)
+            {
+                collectAudio.Play();
+                Debug.Log(transform.parent);
+            }
             SpawnPotion.instance.RandomSpawn(GetComponentInParent<Transform>().position);
         }
         if (collider.tag == "DamePotion")
@@ -183,6 +190,11 @@ public class PlayerMovementController : MonoBehaviour
                 }
             }
             Destroy(collider.gameObject);
+            if (collectAudio != null)
+            {
+                collectAudio.Play();
+                Debug.Log(transform.parent);
+            }
             SpawnPotion.instance.RandomSpawn(GetComponentInParent<Transform>().position);
         }
     }

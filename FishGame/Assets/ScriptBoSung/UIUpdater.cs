@@ -35,8 +35,8 @@ public class UIUpdater : MonoBehaviour
             // update the damage icon and texth
             string sp_string = playerMove.GetComponent<PlayerMovementController>().MovementSpeed.ToString();
             damageText.text = sp_string;
-            Debug.Log(sp_string);
-            Debug.Log(damageText.text);
+            //Debug.Log(sp_string);
+            //Debug.Log(damageText.text);
         }
         else
         {

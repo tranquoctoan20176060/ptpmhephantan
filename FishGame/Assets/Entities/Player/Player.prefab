@@ -9767,7 +9767,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1807254634797455512
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9784,7 +9784,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6815667580414067956
 GameObject:
   m_ObjectHideFlags: 0
@@ -9873,7 +9873,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8899593091813315717
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9890,7 +9890,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7574611994308294295
 GameObject:
   m_ObjectHideFlags: 0
@@ -14825,6 +14825,7 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   finAnimator: {fileID: 0}
   healController: {fileID: 0}
+  collectAudio: {fileID: 0}
 --- !u!114 &-2917991171020188732
 MonoBehaviour:
   m_ObjectHideFlags: 0

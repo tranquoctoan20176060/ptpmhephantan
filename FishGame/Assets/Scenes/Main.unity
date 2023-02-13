@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 18680145}
   - component: {fileID: 18680144}
   - component: {fileID: 18680143}
-  - component: {fileID: 18680142}
+  - component: {fileID: 18680146}
   m_Layer: 0
   m_Name: small Potions_0
   m_TagString: HealthPotion
@@ -142,18 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &18680142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18680141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cf8171433681948b53dc78e0bbfc51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &18680143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,6 +235,19 @@ Transform:
   m_Father: {fileID: 1387804575}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18680146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18680141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cf8171433681948b53dc78e0bbfc51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: {fileID: 0}
 --- !u!1 &174650986
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +559,6 @@ GameObject:
   - component: {fileID: 352276158}
   - component: {fileID: 352276161}
   - component: {fileID: 352276160}
-  - component: {fileID: 352276159}
   m_Layer: 0
   m_Name: small Potions_0
   m_TagString: HealthPotion
@@ -581,18 +581,6 @@ Transform:
   m_Father: {fileID: 730784273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &352276159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352276157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cf8171433681948b53dc78e0bbfc51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &352276160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -820,7 +808,6 @@ GameObject:
   - component: {fileID: 786270578}
   - component: {fileID: 786270581}
   - component: {fileID: 786270580}
-  - component: {fileID: 786270579}
   m_Layer: 0
   m_Name: small Potions_12
   m_TagString: DamePotion
@@ -843,20 +830,6 @@ Transform:
   m_Father: {fileID: 730784273}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &786270579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786270577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8d3ec1276066343960487ab4bbf8ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healController: {fileID: 8781863941264664522, guid: 071abf68f6d9079449c0852014dbd6d4,
-    type: 3}
 --- !u!61 &786270580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1082,6 +1055,7 @@ MonoBehaviour:
   ToggleAudioButton: {fileID: 1251141729}
   MuteImage: {fileID: 21300000, guid: 5befc506e318584499721986caf3a7db, type: 3}
   UnmuteImage: {fileID: 21300000, guid: 2508f57c795642941aec9a2083535a0b, type: 3}
+  sfx: {fileID: -8773884399188219340, guid: 071abf68f6d9079449c0852014dbd6d4, type: 3}
 --- !u!1 &970776230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,7 +1067,6 @@ GameObject:
   - component: {fileID: 970776231}
   - component: {fileID: 970776234}
   - component: {fileID: 970776233}
-  - component: {fileID: 970776232}
   m_Layer: 0
   m_Name: small Potions_0
   m_TagString: HealthPotion
@@ -1116,18 +1089,6 @@ Transform:
   m_Father: {fileID: 730784273}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &970776232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970776230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cf8171433681948b53dc78e0bbfc51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &970776233
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1217,7 +1178,6 @@ GameObject:
   - component: {fileID: 1054705959}
   - component: {fileID: 1054705962}
   - component: {fileID: 1054705961}
-  - component: {fileID: 1054705960}
   m_Layer: 0
   m_Name: small Potions_12
   m_TagString: DamePotion
@@ -1240,20 +1200,6 @@ Transform:
   m_Father: {fileID: 730784273}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1054705960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054705958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8d3ec1276066343960487ab4bbf8ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healController: {fileID: 8781863941264664522, guid: 071abf68f6d9079449c0852014dbd6d4,
-    type: 3}
 --- !u!61 &1054705961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1355,7 +1301,6 @@ GameObject:
   - component: {fileID: 1347631218}
   - component: {fileID: 1347631217}
   - component: {fileID: 1347631216}
-  - component: {fileID: 1347631215}
   m_Layer: 0
   m_Name: small Potions_12
   m_TagString: DamePotion
@@ -1363,20 +1308,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1347631215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347631214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8d3ec1276066343960487ab4bbf8ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healController: {fileID: 8781863941264664522, guid: 071abf68f6d9079449c0852014dbd6d4,
-    type: 3}
 --- !u!61 &1347631216
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -30,6 +30,8 @@ public class AudioManager : MonoBehaviour
     public Sprite UnmuteImage;
 
     private AudioSource audioSource;
+
+    public AudioSource sfx;
     
     /// <summary>
     /// Called by Unity when this GameObject starts.
@@ -75,6 +77,12 @@ public class AudioManager : MonoBehaviour
     {
         var isMaxVolume = audioSource.volume == MaxVolume;
         audioSource.volume = isMaxVolume ? 0 : MaxVolume;
+        sfx.volume = audioSource.volume;
         ToggleAudioButton.GetComponent<Image>().sprite = !isMaxVolume ? UnmuteImage : MuteImage;
+    }
+
+    private void OnApplicationQuit()
+    {
+        sfx.volume = audioSource.volume = MaxVolume;
     }
 }
